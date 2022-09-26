@@ -1,17 +1,38 @@
 // @flow 
 import * as React from 'react';
 import {FaFacebookF, FaGoogle} from "react-icons/fa";
+import {Input} from "../Input/Input";
+import {useRef} from "react";
+import {toast} from "react-toastify";
 
 type Props = {
     changeModal: any
 };
+
+
 export const Login = ({changeModal}: Props) => {
+
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+
+    const submitLogin = (e: any) => {
+        e.preventDefault()
+
+        const email = emailRef?.current?.value
+        const password = passwordRef?.current?.value
+    }
+
+    const showMessage = ()=>{
+        toast('Coming soon');
+    }
+
     return (
-        <div className="modal bg-white px-10 py-16 w-112 rounded-xl" onClick={event => event.stopPropagation()}>
+        <div className="modal bg-white px-14 pt-14 pb-10 w-112 rounded-2xl" onClick={event => event.stopPropagation()}>
             <h1 className='text-4xl font-bold text-center'>Welcome Back!</h1>
+
             <div className="socials flex mt-4 space-x-2">
-                <div
-                    className="google flex-1 bg-primary text-white mx-auto py-3 rounded-lg font-semibold flex items-center justify-center space-x-2
+                <div onClick={showMessage}
+                     className="google flex-1 bg-primary text-white mx-auto py-3 rounded-lg font-semibold flex items-center justify-center space-x-2
                             hover:ring ring-primary--40 cursor-pointer">
                     <p><FaGoogle/></p> <p>Sign in with Google</p>
                 </div>
@@ -25,7 +46,20 @@ export const Login = ({changeModal}: Props) => {
                 <h6>or continue with</h6>
                 <div className="flex-1 border-b h-3.5"></div>
             </div>
-            <h4 className='mt-4 text-center'>Don't have an account? <span onClick={()=>changeModal('register')} className='text-primary cursor-pointer'>Sign Up</span></h4>
+            <form className='mt-4 space-y-4' onSubmit={submitLogin}>
+                <Input title='Email address' innerRef={emailRef} type='email' placeholder='Enter your email'/>
+                <Input title='Password' innerRef={passwordRef} type='password' placeholder='Enter your Password'/>
+                <p onClick={() => changeModal('forget')}
+                   className='cursor-pointer text-primary text-right text-md'>Forgot your
+                    password?</p>
+                <div className="pt-2">
+                    <button className='blue-btn'>Sign in</button>
+                </div>
+            </form>
+            <h4 className='mt-6 text-center text-gray-700'>Don't have an account? <span
+                onClick={() => changeModal('register')}
+                className='text-primary cursor-pointer'>Sign Up</span>
+            </h4>
         </div>
     );
 };

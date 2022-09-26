@@ -18,10 +18,12 @@ module.exports = {
                     60: '#83A7FF',
                     40: '#AEC4FE',
                     20: '#D6E1FF'
-                }
+                },
+                'input-gray': '#E7ECF2'
             },
             boxShadow: {
-                'b-header': '0px 2px 5px 1px rgba(0,0,0,0.03)'
+                'b-header': '0px 2px 5px 1px rgba(0,0,0,0.03)',
+                'blue-btn': '0px 4px 20px 0px rgba(50,107,255,0.35)'
             },
             spacing: {
                 '112': '28rem',

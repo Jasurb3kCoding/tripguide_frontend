@@ -5,7 +5,7 @@ import {FaFacebookF, FaGoogle} from "react-icons/fa";
 type Props = {
     changeModal: any
 };
-export const Forget = ({changeModal}: Props) => {
+export const ForgetCode = ({changeModal}: Props) => {
     return (
         <div className="modal bg-white px-10 py-16 w-112 rounded-xl" onClick={event => event.stopPropagation()}>
             <h1 className='text-4xl font-bold text-center'>Forget!</h1>

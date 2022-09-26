@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {Login} from "./Login/Login";
 import {Register} from "./Register/Register";
 import {Forget} from "./Forget/Forget";
+import {ForgetCode} from "./ForgetCode/ForgetCode";
 
 interface Modal {
     name: string,
@@ -32,8 +33,16 @@ export const Auth = ({hideAuthComponent}: Props) => {
         },
         {
             name: 'register',
-            element: <Register/>
+            element: <Register changeModal={setActivePage}/>
         },
+        {
+            name: 'forget',
+            element: <Forget changeModal={setActivePage}/>
+        },
+        {
+            name: 'forgetCode',
+            element: <ForgetCode changeModal={setActivePage}/>
+        }
     ]
     const activePageElement = modals.find(modal=>modal.name===activePage)
 

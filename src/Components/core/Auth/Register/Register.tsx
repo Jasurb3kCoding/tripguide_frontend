@@ -2,11 +2,13 @@
 import * as React from 'react';
 import {FaFacebookF, FaGoogle} from "react-icons/fa";
 
-type Props = {};
-export const Register = (props: Props) => {
+type Props = {
+    changeModal: any
+};
+export const Register = ({changeModal}: Props) => {
     return (
         <div className="modal bg-white px-10 py-16 w-112 rounded-xl" onClick={event => event.stopPropagation()}>
-            <h1 className='text-4xl font-bold text-center'>Register!</h1>
+            <h1 className='text-4xl font-bold text-center'>Lets' Go!</h1>
             <div className="socials flex mt-4 space-x-2">
                 <div
                     className="google flex-1 bg-primary text-white mx-auto py-3 rounded-lg font-semibold flex items-center justify-center space-x-2

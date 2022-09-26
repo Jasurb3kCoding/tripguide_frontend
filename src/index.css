@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+/*Alert*/
+.Toastify__progress-bar {
+    background: linear-gradient(
+            to right,
+            #326BFF,
+            #5A89FF
+    )!important;
+}
+
+* {
     @apply transition-all duration-200
+}
+
+
+.blue-btn {
+    @apply w-full py-3 bg-primary text-white font-semibold rounded-lg
+    shadow-blue-btn
+    hover:shadow-none
 }
