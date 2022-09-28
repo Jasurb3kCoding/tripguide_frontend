@@ -24,7 +24,7 @@ export const Auth = ({hideAuthComponent}: Props) => {
     });
 
 
-    const [activePage, setActivePage] = useState('login');
+    const [activePage, setActivePage] = useState('forgetCode');
 
     const modals: Modal[] = [
         {
@@ -44,7 +44,7 @@ export const Auth = ({hideAuthComponent}: Props) => {
             element: <ForgetCode changeModal={setActivePage}/>
         }
     ]
-    const activePageElement = modals.find(modal=>modal.name===activePage)
+    const activePageElement = modals.find(modal => modal.name === activePage)
 
     return (
         <div onClick={hideAuthComponent} className='w-full h-screen fixed top-0 left-0 z-10'>
@@ -52,7 +52,10 @@ export const Auth = ({hideAuthComponent}: Props) => {
             <div className="relative w-full h-full flex items-center justify-center">
                 <div
                     className="bg-black opacity-10 w-full h-full absolute top-0 left-0 -z-10"></div>
-                {activePageElement?.element}
+                <div className="modal bg-white px-14 pt-14 pb-10 w-112 rounded-2xl"
+                     onClick={event => event.stopPropagation()}>
+                    {activePageElement?.element}
+                </div>
             </div>
         </div>
     );

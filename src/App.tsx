@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {};
 export const App = (props: Props) => {
-    const [isAuthComponentActive, setIsAuthComponentActive] = useState(false);
+    const [isAuthComponentActive, setIsAuthComponentActive] = useState(true);
     const showAuthComponent = () => setIsAuthComponentActive(true)
     const hideAuthComponent = () => setIsAuthComponentActive(false)
 

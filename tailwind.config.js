@@ -14,6 +14,8 @@ module.exports = {
                 'background': '#fbfbfb',
                 'primary': '#326BFF',
                 'primary-': {
+                    140: '#003EE0',
+                    120: '#0A4EFF',
                     80: '#5A89FF',
                     60: '#83A7FF',
                     40: '#AEC4FE',

@@ -15,6 +15,10 @@
     @apply transition-all duration-200
 }
 
+a, .link{
+    @apply text-primary cursor-pointer hover:text-primary--140 font-semibold
+}
+
 
 .blue-btn {
     @apply w-full py-3 bg-primary text-white font-semibold rounded-lg

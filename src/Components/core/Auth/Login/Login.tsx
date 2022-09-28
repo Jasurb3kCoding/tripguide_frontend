@@ -22,22 +22,18 @@ export const Login = ({changeModal}: Props) => {
         const password = passwordRef?.current?.value
     }
 
-    const showMessage = ()=>{
-        toast('Coming soon');
-    }
-
     return (
-        <div className="modal bg-white px-14 pt-14 pb-10 w-112 rounded-2xl" onClick={event => event.stopPropagation()}>
+        <>
             <h1 className='text-4xl font-bold text-center'>Welcome Back!</h1>
 
             <div className="socials flex mt-4 space-x-2">
-                <div onClick={showMessage}
+                <div onClick={() => toast('Coming soon')}
                      className="google flex-1 bg-primary text-white mx-auto py-3 rounded-lg font-semibold flex items-center justify-center space-x-2
                             hover:ring ring-primary--40 cursor-pointer">
                     <p><FaGoogle/></p> <p>Sign in with Google</p>
                 </div>
-                <div
-                    className="fb w-12 bg-[#3B3E45] rounded-lg flex items-center justify-center cursor-pointer ring-[#B9B9BC] hover:ring">
+                <div onClick={() => toast('Coming soon')}
+                     className="fb w-12 bg-[#3B3E45] rounded-lg flex items-center justify-center cursor-pointer ring-[#B9B9BC] hover:ring">
                     <FaFacebookF size={20}
                                  color='#fff'/></div>
             </div>
@@ -58,8 +54,8 @@ export const Login = ({changeModal}: Props) => {
             </form>
             <h4 className='mt-6 text-center text-gray-700'>Don't have an account? <span
                 onClick={() => changeModal('register')}
-                className='text-primary cursor-pointer'>Sign Up</span>
+                className='link'>Sign Up</span>
             </h4>
-        </div>
+        </>
     );
 };

@@ -1,30 +1,69 @@
 // @flow
 import * as React from 'react';
 import {FaFacebookF, FaGoogle} from "react-icons/fa";
+import {Input} from "../Input/Input";
+import {Link} from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import './style.css'
 
 type Props = {
     changeModal: any
 };
+
+
 export const ForgetCode = ({changeModal}: Props) => {
+    const CODE_LENGTH = 4
+    const [digits, setDigits] = useState('12');
+    const active = digits.indexOf(' ')
+
+    const emailRef = useRef<HTMLInputElement>(null);
+    const digitsRef = useRef<HTMLInputElement>(null);
+
+    const submitForgetEmail = (e: any) => {
+        e.preventDefault()
+        const email = emailRef?.current?.value
+    }
+
+    const EnterDigit = (event: any) => {
+        const new_value = event.target.value
+        if (new_value.length > CODE_LENGTH) return
+        setDigits(new_value)
+    }
+
+    // Focus on hidden input when opened
+    const FocusInput = () => {
+        digitsRef?.current?.focus()
+    }
+
+
+    useEffect(() => {
+        FocusInput()
+    });
+
     return (
-        <div className="modal bg-white px-10 py-16 w-112 rounded-xl" onClick={event => event.stopPropagation()}>
-            <h1 className='text-4xl font-bold text-center'>Forget!</h1>
-            <div className="socials flex mt-4 space-x-2">
-                <div
-                    className="google flex-1 bg-primary text-white mx-auto py-3 rounded-lg font-semibold flex items-center justify-center space-x-2
-                            hover:ring ring-primary--40 cursor-pointer">
-                    <p><FaGoogle/></p> <p>Sign in with Google</p>
+        <div onClick={FocusInput}>
+            <h1 className='text-4xl font-bold text-center'>Email Verification</h1>
+            <h6 className='text-regular text-gray-400 mt-2'>We have sent the verification code to your email.</h6>
+            <form className='mt-8 space-y-4' onSubmit={submitForgetEmail}>
+                <div className="flex justify-between w-4/5 mx-auto">
+                    {/*Filled Digits*/}
+                    {digits.split('').map(digit =>
+                        <div className={`digitInput filled`}>{digit}</div>
+                    )}
+                    {/*Active Digit*/}
+                    {digits.length < CODE_LENGTH && <div className={`digitInput active`}></div>}
+                    {/*    Not-filled Not-active digits*/}
+                    {CODE_LENGTH - digits.length - 1 > 0 && [...Array(CODE_LENGTH - digits.length - 1)].map(_ =>
+                        <div className={`digitInput`}></div>
+                    )}
                 </div>
-                <div
-                    className="fb w-12 bg-[#3B3E45] rounded-lg flex items-center justify-center cursor-pointer ring-[#B9B9BC] hover:ring">
-                    <FaFacebookF size={20}
-                                 color='#fff'/></div>
-            </div>
-            <div className="continue flex gap-3 mt-4 text-gray-400">
-                <div className="flex-1 border-b h-3.5"></div>
-                <h6>or continue with</h6>
-                <div className="flex-1 border-b h-3.5"></div>
-            </div>
+                <div className="pt-2">
+                    <input type="text" ref={digitsRef} className='h-0 w-0' value={digits} onChange={EnterDigit}/>
+                    <button className='blue-btn' onClick={() => changeModal('forgetCode')}>Verify Account</button>
+                </div>
+                <h4 className='pt-2 text-center text-gray-700'>Don't Recieve Code? <span className='link'>Resend</span>
+                </h4>
+            </form>
 
         </div>
     );
