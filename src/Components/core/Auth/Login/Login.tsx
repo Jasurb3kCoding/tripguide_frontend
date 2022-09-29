@@ -4,7 +4,7 @@ import {FaFacebookF, FaGoogle} from "react-icons/fa";
 import {Input} from "../Input/Input";
 import {useEffect, useRef, useState} from "react";
 import {toast} from "react-toastify";
-import {validateEmail, validatePassword} from "../validators";
+import {validateEmail, validatePasswordForLogin} from "../validators";
 
 type Props = {
     changeModal: any
@@ -34,7 +34,7 @@ export const Login = ({changeModal}: Props) => {
     }, [email]);
 
     useEffect(() => {
-        const validation = validatePassword(pwd)
+        const validation = validatePasswordForLogin(pwd)
         setValidPwd(validation.is_valid)
         setErrorMessagePwd(validation.message)
     }, [pwd])

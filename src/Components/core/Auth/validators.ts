@@ -38,12 +38,29 @@ export const validateEmail = (email: string) => {
     return VALID
 }
 
-export const validatePassword = (email: string) => {
+export const validatePassword = (password: string) => {
+    const MIN_PASSWORD_LENGTH = 8
+    const MAX_PASSWORD_LENGTH = 45
+
     // Check if it includes only letters and space " "
-    if (!/(?=.*[a-z])/.test(email)) return error(ERROR_MESSAGES.PWD_INCLUDE_LOWERCASE_LETTER)
-    if (!/(?=.*[A-Z])/.test(email)) return error(ERROR_MESSAGES.PWD_INCLUDE_UPPERCASE_LETTER)
-    if (!/(?=.*\d)/.test(email)) return error(ERROR_MESSAGES.PWD_INCLUDE_NUMBER)
-    if (!/(?=.*\W)/.test(email)) return error(ERROR_MESSAGES.PWD_INCLUDE_SPECIAL_CHARACTER)
+    if (!/(?=.*[a-z])/.test(password)) return error(ERROR_MESSAGES.PWD_INCLUDE_LOWERCASE_LETTER)
+    if (!/(?=.*[A-Z])/.test(password)) return error(ERROR_MESSAGES.PWD_INCLUDE_UPPERCASE_LETTER)
+    if (!/(?=.*\d)/.test(password)) return error(ERROR_MESSAGES.PWD_INCLUDE_NUMBER)
+    if (!/(?=.*\W)/.test(password)) return error(ERROR_MESSAGES.PWD_INCLUDE_SPECIAL_CHARACTER)
+
+    // Check the length
+    if (MIN_PASSWORD_LENGTH > password.length) return error(ERROR_MESSAGES.MIN_LENGTH.replace('{MIN_LENGTH}', MIN_PASSWORD_LENGTH.toString()))
+    if (MAX_PASSWORD_LENGTH < password.length) return error(ERROR_MESSAGES.MAX_LENGTH.replace('{MAX_LENGTH}', MAX_PASSWORD_LENGTH.toString()))
+
+    return VALID
+}
+
+export const validatePasswordForLogin = (password: string) => {
+    const MIN_PASSWORD_LENGTH = 8
+    const MAX_PASSWORD_LENGTH = 45
+    // Check the length
+    if (MIN_PASSWORD_LENGTH > password.length) return error(ERROR_MESSAGES.MIN_LENGTH.replace('{MIN_LENGTH}', MIN_PASSWORD_LENGTH.toString()))
+    if (MAX_PASSWORD_LENGTH < password.length) return error(ERROR_MESSAGES.MAX_LENGTH.replace('{MAX_LENGTH}', MAX_PASSWORD_LENGTH.toString()))
     return VALID
 }
 

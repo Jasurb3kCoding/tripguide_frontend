@@ -12,12 +12,16 @@ type Props = {
     [x: string]: any
 };
 export const Input = ({title, innerRef, isValid, errorMessage, is_focused, ...rest}: Props) => {
+        const showError = !isValid && rest.value && !is_focused
     return (
         <div className='w-full'>
             <h6 className='text-sm'>{title}</h6>
             <input {...rest} ref={innerRef}
-                   className='cursor-text mt-1 bg-input-gray w-full outline-none py-2.5 px-4 rounded-lg'/>
-            {!isValid && rest.value && !is_focused &&
+                   className={`cursor-text mt-1 w-full outline-none py-2.5 px-4 rounded-lg border
+                   ${showError ? 'border-red-500' : 'border-gray-400'}
+                   ${(showError || is_focused) ? 'bg-white' : 'bg-input-gray'}
+                   `}/>
+            { showError &&
                 <p className='error text-red-500 mt-1'><BiError className='inline mr-1'/>{errorMessage}</p>
             }
         </div>
