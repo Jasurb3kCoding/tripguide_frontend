@@ -13,11 +13,12 @@ type Props = {
 
 export const ForgetCode = ({changeModal}: Props) => {
     const CODE_LENGTH = 4
-    const [digits, setDigits] = useState('12');
-    const active = digits.indexOf(' ')
+    const [digits, setDigits] = useState('');
 
     const emailRef = useRef<HTMLInputElement>(null);
     const digitsRef = useRef<HTMLInputElement>(null);
+
+
 
     const submitForgetEmail = (e: any) => {
         e.preventDefault()

@@ -21,7 +21,7 @@ a, .link{
 
 
 .blue-btn {
-    @apply w-full py-3 bg-primary text-white font-semibold rounded-lg
+    @apply w-full py-3 bg-primary text-white font-semibold rounded-lg text-base
     shadow-blue-btn
     hover:shadow-none
 }

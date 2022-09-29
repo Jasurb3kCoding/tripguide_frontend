@@ -2,8 +2,9 @@
 import * as React from 'react';
 import {FaFacebookF, FaGoogle} from "react-icons/fa";
 import {Input} from "../Input/Input";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import {toast} from "react-toastify";
+import {validateEmail, validatePassword} from "../validators";
 
 type Props = {
     changeModal: any
@@ -13,13 +14,36 @@ type Props = {
 export const Login = ({changeModal}: Props) => {
 
     const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
+    const pwdRef = useRef<HTMLInputElement>(null);
+
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [focusEmail, setFocusEmail] = useState(false);
+    const [errorMessageEmail, setErrorMessageEmail] = useState('');
+
+
+    const [pwd, setPwd] = useState('');
+    const [validPwd, setValidPwd] = useState(false);
+    const [focusPwd, setFocusPwd] = useState(false);
+    const [errorMessagePwd, setErrorMessagePwd] = useState('');
+
+    useEffect(() => {
+        const validation = validateEmail(email)
+        setValidEmail(validation.is_valid)
+        setErrorMessageEmail(validation.message)
+    }, [email]);
+
+    useEffect(() => {
+        const validation = validatePassword(pwd)
+        setValidPwd(validation.is_valid)
+        setErrorMessagePwd(validation.message)
+    }, [pwd])
 
     const submitLogin = (e: any) => {
         e.preventDefault()
 
         const email = emailRef?.current?.value
-        const password = passwordRef?.current?.value
+        const password = pwdRef?.current?.value
     }
 
     return (
@@ -43,8 +67,36 @@ export const Login = ({changeModal}: Props) => {
                 <div className="flex-1 border-b h-3.5"></div>
             </div>
             <form className='mt-4 space-y-4' onSubmit={submitLogin}>
-                <Input title='Email address' innerRef={emailRef} type='email' placeholder='Enter your email'/>
-                <Input title='Password' innerRef={passwordRef} type='password' placeholder='Enter your Password'/>
+                <Input title='Email'
+                       innerRef={emailRef}
+                       isValid={validEmail}
+                       errorMessage={errorMessageEmail}
+                       value={email}
+                       autoComplete={false}
+                       type='text'
+                       placeholder='Email'
+                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                       required
+                       aria-invalid={validEmail ? 'false' : 'true'}
+                       onFocus={() => setFocusEmail(true)}
+                       onBlur={() => setFocusEmail(false)}
+                       is_focused={focusEmail}
+                />
+                <Input title='Password'
+                       innerRef={pwdRef}
+                       isValid={validPwd}
+                       errorMessage={errorMessagePwd}
+                       value={pwd}
+                       autoComplete={false}
+                       type='password'
+                       placeholder='Password'
+                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPwd(e.target.value)}
+                       required
+                       aria-invalid={validPwd ? 'false' : 'true'}
+                       onFocus={() => setFocusPwd(true)}
+                       onBlur={() => setFocusPwd(false)}
+                       is_focused={focusPwd}
+                />
                 <p onClick={() => changeModal('forget')}
                    className='cursor-pointer text-primary text-right text-md'>Forgot your
                     password?</p>
