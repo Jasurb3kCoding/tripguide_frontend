@@ -4,8 +4,9 @@ import {useEffect, useState} from "react";
 import {Login} from "./Login/Login";
 import {Register} from "./Register/Register";
 import {Forget} from "./Forget/Forget";
-import {ForgetCode} from "./ForgetCode/ForgetCode";
+import {EmailVerificationCode} from "./EmailVerificationCode/EmailVerificationCode";
 import {AiOutlinePlus} from "react-icons/ai";
+import {PasswordResetLinkSent} from "./PasswordResetLinkSent/PasswordResetLinkSent";
 
 interface Modal {
     name: string,
@@ -25,23 +26,27 @@ export const Auth = ({hideAuthComponent}: Props) => {
     });
 
     const [activePage, setActivePage] = useState('login');
-
+    const [context, setContext] = useState({})
     const modals: Modal[] = [
         {
             name: 'login',
-            element: <Login changeModal={setActivePage}/>
+            element: <Login changeModal={setActivePage} context={context} setContext={setContext}/>
         },
         {
             name: 'register',
-            element: <Register changeModal={setActivePage}/>
+            element: <Register changeModal={setActivePage} context={context} setContext={setContext}/>
         },
         {
             name: 'forget',
-            element: <Forget changeModal={setActivePage}/>
+            element: <Forget changeModal={setActivePage} context={context} setContext={setContext}/>
         },
         {
-            name: 'forgetCode',
-            element: <ForgetCode changeModal={setActivePage}/>
+            name: 'email_verification_code',
+            element: <EmailVerificationCode changeModal={setActivePage} context={context} setContext={setContext}/>
+        },
+        {
+            name: 'password_reset_link_sent',
+            element: <PasswordResetLinkSent changeModal={setActivePage} context={context} setContext={setContext}/>
         }
     ]
     const activePageElement = modals.find(modal => modal.name === activePage)
@@ -55,7 +60,7 @@ export const Auth = ({hideAuthComponent}: Props) => {
                 <div className="modal bg-white px-14 pt-14 pb-10 w-112 rounded-2xl relative"
                      onClick={event => event.stopPropagation()}>
                     <div onClick={hideAuthComponent}
-                        className="w-10 h-10 absolute -right-3 -top-3 bg-gray-200 flex items-center justify-center rotate-45 rounded-full border border-gray-300 cursor-pointer">
+                         className="w-10 h-10 absolute -right-3 -top-3 bg-gray-200 flex items-center justify-center rotate-45 rounded-full border border-gray-300 cursor-pointer">
                         <AiOutlinePlus size={25}/>
                     </div>
                     {activePageElement?.element}

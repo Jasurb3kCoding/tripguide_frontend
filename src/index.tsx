@@ -5,14 +5,25 @@ import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {Home} from './Pages/Main/Home'
+import {AuthProvider} from "./Context/AuthProvider";
+import {Profile} from "./Pages/Profile/Profile";
+import {ProfileLayout} from "./Components/Profile/ProfileLayout";
+import RequireAuth from "./Components/core/Auth/RequireAuth";
 
 render(
     <BrowserRouter>
-        <Routes>
-            <Route path='/' element={<App/>}>
-                <Route index element={<Home/>}/>
-            </Route>
-        </Routes>
+        <AuthProvider>
+            <Routes>
+                <Route path='/' element={<App/>}>
+                    <Route index element={<Home/>}/>
+                    <Route element={<RequireAuth/>}>
+                        <Route path='/profile' element={<ProfileLayout/>}>
+                            <Route index element={<Profile/>}/>
+                        </Route>
+                    </Route>
+                </Route>
+            </Routes>
+        </AuthProvider>
     </BrowserRouter>,
     document.getElementById('root')
 );

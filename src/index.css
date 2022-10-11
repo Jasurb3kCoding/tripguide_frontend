@@ -25,3 +25,8 @@ a, .link{
     shadow-blue-btn
     hover:shadow-none
 }
+
+.disabled-submit-btn{
+    @apply w-full py-3 bg-gray-300 text-white font-semibold rounded-lg text-base
+    hover:shadow-none
+}

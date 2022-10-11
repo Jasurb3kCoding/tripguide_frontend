@@ -6,15 +6,18 @@ import {useState} from "react";
 import {Auth} from "./Components/core/Auth/Auth";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from "./Hooks/useAuth";
 
 type Props = {};
 export const App = (props: Props) => {
-    const [isAuthComponentActive, setIsAuthComponentActive] = useState(true);
-    const showAuthComponent = () => setIsAuthComponentActive(true)
+    const {user} = useAuth()
+    const [isAuthComponentActive, setIsAuthComponentActive] = useState(false);
+
+    const showAuthComponent = () => user || setIsAuthComponentActive(true)
     const hideAuthComponent = () => setIsAuthComponentActive(false)
 
     return (
-        <div className='bg-background h-[1000px] relative'>
+        <div className='bg-background relative'>
 
             {/*Alert Manager*/}
             <ToastContainer
@@ -28,7 +31,7 @@ export const App = (props: Props) => {
                 draggable
                 pauseOnHover
             />
-            {isAuthComponentActive && <Auth hideAuthComponent={hideAuthComponent}/>}
+            {isAuthComponentActive && !user && <Auth hideAuthComponent={hideAuthComponent}/>}
             <Header showAuthComponent={showAuthComponent}/>
             <Outlet/>
         </div>

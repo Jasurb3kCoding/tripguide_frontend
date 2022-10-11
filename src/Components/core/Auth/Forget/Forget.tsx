@@ -4,18 +4,27 @@ import {Input} from "../Input/Input";
 import {useEffect, useRef, useState} from "react";
 import {validateEmail} from "../validators";
 
+
 type Props = {
     changeModal: any
+    context: any
+    setContext: any
 };
 
 
-export const Forget = ({changeModal}: Props) => {
+export const Forget = ({changeModal, context, setContext}: Props) => {
     const emailRef = useRef<HTMLInputElement>(null);
 
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [focusEmail, setFocusEmail] = useState(false);
     const [errorMessageEmail, setErrorMessageEmail] = useState('');
+
+    const [readyToSubmit, setReadyToSubmit] = useState(false);
+
+    useEffect(() => {
+        setReadyToSubmit(validEmail)
+    }, [validEmail])
 
     useEffect(() => {
         const validation = validateEmail(email)
@@ -26,6 +35,8 @@ export const Forget = ({changeModal}: Props) => {
     const submitForgetEmail = (e: any) => {
         e.preventDefault()
         const email = emailRef?.current?.value
+
+        changeModal('password_reset_link_sent')
     }
     return (
         <>
@@ -37,7 +48,7 @@ export const Forget = ({changeModal}: Props) => {
                        isValid={validEmail}
                        errorMessage={errorMessageEmail}
                        value={email}
-                       autoComplete={false}
+                       autoComplete='false'
                        type='text'
                        placeholder='Email'
                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
@@ -48,7 +59,7 @@ export const Forget = ({changeModal}: Props) => {
                        is_focused={focusEmail}
                 />
                 <div className="pt-2">
-                    <button className='blue-btn' onClick={() => changeModal('forgetCode')}>Recover Email</button>
+                    <button className={`${readyToSubmit ? 'blue-btn' : 'disabled-submit-btn'}`}>Recover Email</button>
                 </div>
             </form>
 

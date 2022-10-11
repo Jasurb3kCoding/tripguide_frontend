@@ -5,13 +5,18 @@ import {Input} from "../Input/Input";
 import {useEffect, useRef, useState} from "react";
 import {toast} from "react-toastify";
 import {validateEmail, validatePasswordForLogin} from "../validators";
+import useAuth from "../../../../Hooks/useAuth";
+
 
 type Props = {
     changeModal: any
+    context: any
+    setContext: any
 };
 
 
-export const Login = ({changeModal}: Props) => {
+export const Login = ({changeModal, context, setContext}: Props) => {
+    const { loginUser } = useAuth()
 
     const emailRef = useRef<HTMLInputElement>(null);
     const pwdRef = useRef<HTMLInputElement>(null);
@@ -27,6 +32,10 @@ export const Login = ({changeModal}: Props) => {
     const [focusPwd, setFocusPwd] = useState(false);
     const [errorMessagePwd, setErrorMessagePwd] = useState('');
 
+    const [readyToSubmit, setReadyToSubmit] = useState(false);
+
+    const [errMsg, setErrMsg] = useState('');
+
     useEffect(() => {
         const validation = validateEmail(email)
         setValidEmail(validation.is_valid)
@@ -39,11 +48,29 @@ export const Login = ({changeModal}: Props) => {
         setErrorMessagePwd(validation.message)
     }, [pwd])
 
-    const submitLogin = (e: any) => {
-        e.preventDefault()
+    useEffect(() => {
+        setReadyToSubmit(validEmail && validPwd)
+    }, [validEmail, validPwd])
 
-        const email = emailRef?.current?.value
-        const password = pwdRef?.current?.value
+    useEffect(() => {
+        setErrMsg('')
+    }, [email, pwd]);
+
+    const submitLogin = async (e: any) => {
+        e.preventDefault()
+        try {
+            await loginUser(email, pwd)
+        } catch (err: any) {
+            if (!err?.response) {
+                setErrMsg('There was a problem with Server. Please try again later.')
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password')
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized')
+            } else {
+                setErrMsg('Login Failed. Please try again later.')
+            }
+        }
     }
 
     return (
@@ -67,12 +94,16 @@ export const Login = ({changeModal}: Props) => {
                 <div className="flex-1 border-b h-3.5"></div>
             </div>
             <form className='mt-4 space-y-4' onSubmit={submitLogin}>
+                <div aria-live='assertive'
+                     className={`bg-red-200 text-red-800 rounded-lg px-5 py-4 ${!errMsg && 'hidden'}`}>
+                    <h3>{errMsg}</h3>
+                </div>
                 <Input title='Email'
                        innerRef={emailRef}
                        isValid={validEmail}
                        errorMessage={errorMessageEmail}
                        value={email}
-                       autoComplete={false}
+                       autoComplete='false'
                        type='text'
                        placeholder='Email'
                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
@@ -87,7 +118,7 @@ export const Login = ({changeModal}: Props) => {
                        isValid={validPwd}
                        errorMessage={errorMessagePwd}
                        value={pwd}
-                       autoComplete={false}
+                       autoComplete='false'
                        type='password'
                        placeholder='Password'
                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPwd(e.target.value)}
@@ -101,7 +132,7 @@ export const Login = ({changeModal}: Props) => {
                    className='cursor-pointer text-primary text-right text-md'>Forgot your
                     password?</p>
                 <div className="pt-2">
-                    <button className='blue-btn'>Sign in</button>
+                    <button className={`${readyToSubmit ? 'blue-btn' : 'disabled-submit-btn'}`}>Sign in</button>
                 </div>
             </form>
             <h4 className='mt-6 text-center text-gray-700'>Don't have an account? <span
