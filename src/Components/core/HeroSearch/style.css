@@ -1,0 +1,14 @@
+.hero-search-tab.active{
+    @apply border-b-primary border-b-2 -mb-0.5 text-black
+}
+
+.hero-search-tab{
+    @apply px-3 py-3 cursor-pointer text-gray-400 font-semibold flex items-center
+    hover:text-black
+}
+.hero-search-tab{
+    transition-duration: 0ms!important;
+}
+.hero-search-tab>p{
+    @apply ml-2
+}

@@ -3,14 +3,15 @@ import * as React from 'react';
 import {ProfileInfo} from "../types";
 import {HiLocationMarker, HiPhone} from "react-icons/hi";
 import {IoMdMail, IoMdCamera} from "react-icons/io";
-import {BsThreeDots} from "react-icons/bs";
+import useAuth from "../../../Hooks/useAuth";
+import { BiLogOut, BiEditAlt } from 'react-icons/bi';
 
 
 type Props = {
     profileInfo: ProfileInfo
 };
-export const MyProfileInfo = ({profileInfo}: Props) => {
-        if (!profileInfo) return <></>
+export const MyProfileInfo = () => {
+        const {user, logoutUser} = useAuth()
         const {
             id,
             first_name,
@@ -21,10 +22,13 @@ export const MyProfileInfo = ({profileInfo}: Props) => {
             background_photo,
             phone_number,
             address
-        } = profileInfo
+        } = user
         return (
             <div>
-                <h2 className='text-3xl font-semibold'>My Profile</h2>
+                <div className="flex justify-between">
+                    <h2 className='text-3xl font-semibold'>My Profile</h2>
+                    <h3 onClick={logoutUser} className='border-bg-btn-red'><BiLogOut className='mr-2'/>Log Out</h3>
+                </div>
                 <div className="card w-full flex bg-white shadow-xl mt-6 rounded-xl">
                     <div className="bg-photo w-80 h-80 rounded-l-xl bg-gray-400 relative">
                         <img className="object-cover w-full h-full rounded-l-xl" src={background_photo} alt=""/>
@@ -36,17 +40,29 @@ export const MyProfileInfo = ({profileInfo}: Props) => {
                     <div className="info pl-20 pr-10 py-8 flex-1">
                         <div className="main-info flex justify-between items-center">
                             <div className="-ml-32 photo-name flex space-x-8 justify-center items-center">
-                                <div className="photo-wrapper w-24 h-24 shadow-2xl rounded-full z-10 ">
-                                    <img className="object-fit w-full h-full rounded-full border-red-400" src={profile_photo}
-                                         alt=""/>
+                                <div
+                                    className="relative photo-wrapper w-24 h-24 shadow-2xl rounded-full z-10 ">
+                                    {user.profile_photo
+                                        //If user has pic
+                                        ?
+                                        <img className="object-fit w-full h-full rounded-full border-red-400"
+                                             src={profile_photo}
+                                             alt=""/>
+                                        :
+                                        <div
+                                            className='font-bold text-2xl bg-white w-full h-full rounded-full flex items-center justify-center text-gray-600'>
+                                            <h1>{user?.first_name?.charAt(0)}{user?.last_name?.charAt(0)}</h1>
+                                        </div>
+                                    }
                                 </div>
                                 <div className="name-joined">
                                     <h5 className='font-semibold text-2xl'>{first_name} {last_name}</h5>
                                     <p className='text-gray-400'>{date_joined}</p>
                                 </div>
                             </div>
-                            <div className="three-dots flex -mt-5 hover:bg-gray-200 p-1.5 rounded-full cursor-pointer">
-                                <BsThreeDots size={20}/>
+                            <div className="border-bg-btn-gray">
+                                <BiEditAlt className='mr-2'/>
+                                Edit Profile
                             </div>
                         </div>
                         <div

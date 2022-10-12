@@ -4,6 +4,7 @@ import {MyProfileInfo} from "../../Components/Profile/MyProfileInfo/MyProfileInf
 import {useEffect, useState} from "react";
 import {ProfileInfo} from "../../Components/Profile/types";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
+import useAuth from "../../Hooks/useAuth";
 
 type Props = {};
 
@@ -16,18 +17,9 @@ export const Profile = (props: Props) => {
         const response = await axiosPrivate.get(PROFILE_URL + id)
         setUserInfo(response?.data)
     }
-    useEffect(() => {
-        try {
-            getUserInfo(1).catch(err => {
-                console.log(err)
-            })
-        } catch (err) {
-            console.log(err)
-        }
-    }, [])
     return (
         <div>
-            <MyProfileInfo profileInfo={userInfo}/>
+            <MyProfileInfo/>
         </div>
     );
 };

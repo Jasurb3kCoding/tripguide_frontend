@@ -133,17 +133,17 @@ export const Register = ({changeModal, context, setContext}: Props) => {
                 })
                 changeModal('email_verification_code')
             }
-        } catch (err:any) {
+        } catch (err: any) {
             setReadyToSubmit(true)
             if (!err?.response) {
                 setErrMsg('There was a problem with Server. Please try again later.')
-            }else
-            // TODO: Muhammadjon should turn the errors into list
-            if (Object.keys(err.response?.data).length>0){
+            } else
+                // TODO: Muhammadjon should turn the errors into list
+            if (Object.keys(err.response?.data).length > 0) {
                 const errors = err.response.data || {}
                 console.log(Object.keys(errors))
                 setErrMsg(errors[Object.keys(errors)[0]])
-            }else{
+            } else {
                 setErrMsg('Login Failed. Please try again later.')
             }
         }

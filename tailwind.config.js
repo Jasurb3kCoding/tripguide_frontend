@@ -11,6 +11,7 @@ module.exports = {
                 'sans': ['DM Sans', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                'black': '#3B3E44',
                 'background': '#fbfbfb',
                 'primary': '#326BFF',
                 'primary-': {
@@ -21,7 +22,10 @@ module.exports = {
                     40: '#AEC4FE',
                     20: '#D6E1FF'
                 },
-                'input-gray': '#E7ECF2'
+                'input-gray': '#E7ECF2',
+                product: {
+                    'red': '#FF4332',
+                }
             },
             boxShadow: {
                 'b-header': '0px 2px 5px 1px rgba(0,0,0,0.03)',

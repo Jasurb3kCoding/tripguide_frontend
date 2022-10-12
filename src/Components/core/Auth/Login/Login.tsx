@@ -16,7 +16,7 @@ type Props = {
 
 
 export const Login = ({changeModal, context, setContext}: Props) => {
-    const { loginUser } = useAuth()
+    const {loginUser} = useAuth()
 
     const emailRef = useRef<HTMLInputElement>(null);
     const pwdRef = useRef<HTMLInputElement>(null);
@@ -35,6 +35,10 @@ export const Login = ({changeModal, context, setContext}: Props) => {
     const [readyToSubmit, setReadyToSubmit] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
+
+    useEffect(() => {
+        emailRef?.current?.focus()
+    }, [])
 
     useEffect(() => {
         const validation = validateEmail(email)

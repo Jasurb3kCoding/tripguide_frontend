@@ -4,7 +4,7 @@ import './index.css';
 import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {Home} from './Pages/Main/Home'
+import {Home} from './Pages/Hotels/Home'
 import {AuthProvider} from "./Context/AuthProvider";
 import {Profile} from "./Pages/Profile/Profile";
 import {ProfileLayout} from "./Components/Profile/ProfileLayout";

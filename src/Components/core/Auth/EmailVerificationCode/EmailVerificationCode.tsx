@@ -16,12 +16,22 @@ export const EmailVerificationCode = ({changeModal, context, setContext}: Props)
     const CODE_LENGTH = 4
     const [digits, setDigits] = useState('');
     const [isElementActive, setIsElementActive] = useState(false);
+    const [isRequestSent, setIsRequestSent] = useState(false)
+    const [errMsg, setErrMsg] = useState<string | undefined>('')
+
     const emailRef = useRef<HTMLInputElement>(null);
     const digitsRef = useRef<HTMLInputElement>(null);
-    const {ver} = useAuth()
-    const submitForgetEmail = (e: any) => {
-        e.preventDefault()
-        const email = emailRef?.current?.value
+
+    const {verifyUser} = useAuth()
+
+    const verifyCode = async (email:string, code:string) => {
+        setIsRequestSent(true)
+        const {success, message} = await verifyUser(email, code)
+        if (!success){
+            setIsRequestSent(false)
+            setDigits('')
+            setErrMsg(message)
+        }
     }
 
     const EnterDigit = (event: any) => {
@@ -35,8 +45,8 @@ export const EmailVerificationCode = ({changeModal, context, setContext}: Props)
     useEffect(() => {
         if (digits.length !== 4) return
         const email = context.email
-
-
+        const code = digits
+        verifyCode(email, code)
     }, [digits])
     // Focus on hidden input when opened
     const FocusInput = () => {
@@ -53,7 +63,11 @@ export const EmailVerificationCode = ({changeModal, context, setContext}: Props)
             <h1 className='text-4xl font-bold text-center'>Email Verification</h1>
             <h6 className='text-regular text-gray-400 mt-2'>We have sent the verification code to your
                 email {context?.email}</h6>
-            <form className='mt-8 space-y-4' onSubmit={submitForgetEmail}>
+            <form className='mt-8 space-y-4'>
+                <div
+                     className={`bg-red-200 text-red-800 rounded-lg px-5 py-4 ${!errMsg && 'hidden'}`}>
+                    <h3>{errMsg}</h3>
+                </div>
                 <div className="flex justify-between w-4/5 mx-auto">
                     {/*Filled Digits*/}
                     {digits.split('').map(digit =>

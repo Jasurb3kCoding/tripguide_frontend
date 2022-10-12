@@ -30,3 +30,8 @@ a, .link{
     @apply w-full py-3 bg-gray-300 text-white font-semibold rounded-lg text-base
     hover:shadow-none
 }
+
+
+.layout{
+    @apply w-10/12 mx-auto
+}
