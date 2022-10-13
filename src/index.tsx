@@ -9,6 +9,7 @@ import {AuthProvider} from "./Context/AuthProvider";
 import {Profile} from "./Pages/Profile/Profile";
 import {ProfileLayout} from "./Components/Profile/ProfileLayout";
 import RequireAuth from "./Components/core/Auth/RequireAuth";
+import {ResetPassword} from "./Pages/Profile/ResetPassword";
 
 render(
     <BrowserRouter>
@@ -16,6 +17,9 @@ render(
             <Routes>
                 <Route path='/' element={<App/>}>
                     <Route index element={<Home/>}/>
+                    <Route path='/reset-password/:uid' element={<ResetPassword/>}>
+
+                    </Route>
                     <Route element={<RequireAuth/>}>
                         <Route path='/profile' element={<ProfileLayout/>}>
                             <Route index element={<Profile/>}/>

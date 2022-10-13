@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Input} from "../Input/Input";
 import {useEffect, useRef, useState} from "react";
 import {validateEmail} from "../validators";
+import axios from "../../../../Api/axios";
 
 
 type Props = {
@@ -19,6 +20,11 @@ export const Forget = ({changeModal, context, setContext}: Props) => {
     const [validEmail, setValidEmail] = useState(false);
     const [focusEmail, setFocusEmail] = useState(false);
     const [errorMessageEmail, setErrorMessageEmail] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+
+    useEffect(() => {
+        setErrMsg('')
+    }, [email]);
 
     const [readyToSubmit, setReadyToSubmit] = useState(false);
 
@@ -32,11 +38,25 @@ export const Forget = ({changeModal, context, setContext}: Props) => {
         setErrorMessageEmail(validation.message)
     }, [email]);
 
-    const submitForgetEmail = (e: any) => {
-        e.preventDefault()
-        const email = emailRef?.current?.value
+    useEffect(()=>{
+        emailRef?.current?.focus()
+    }, [])
 
-        changeModal('password_reset_link_sent')
+    const submitForgetEmail = async (e: any) => {
+        e.preventDefault()
+        setReadyToSubmit(false)
+        const GET_EMAIL_ENDPOINT = 'password-recovery-send-email/'
+        if (!readyToSubmit) return setErrMsg("Please check your passwords and try again.")
+
+        axios.post(GET_EMAIL_ENDPOINT, {
+            email: email
+        }).then(response => {
+            changeModal('password_reset_link_sent')
+        }).catch(err=>{
+            setErrMsg(err.message)
+            setReadyToSubmit(true)
+        })
+
     }
     return (
         <>
@@ -48,8 +68,7 @@ export const Forget = ({changeModal, context, setContext}: Props) => {
                        isValid={validEmail}
                        errorMessage={errorMessageEmail}
                        value={email}
-                       autoComplete='false'
-                       type='text'
+                       type='email'
                        placeholder='Email'
                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                        required

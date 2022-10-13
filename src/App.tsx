@@ -17,7 +17,7 @@ export const App = (props: Props) => {
     const hideAuthComponent = () => setIsAuthComponentActive(false)
 
     return (
-        <div className='bg-background relative'>
+        <div className='relative'>
 
             {/*Alert Manager*/}
             <ToastContainer

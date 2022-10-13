@@ -4,6 +4,8 @@ import jwt_decode from "jwt-decode";
 import jwtDecode from "jwt-decode";
 import {useEffect} from "react";
 import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import {Navigate, useNavigate} from "react-router-dom";
+
 
 type AuthContextType = {
     user: any,
@@ -11,6 +13,7 @@ type AuthContextType = {
     logoutUser: () => void
     updateAccessToken: (data: any) => void
     verifyUser: (email: string, code: string) => Promise<{ success: boolean, message?: string }>
+    recoverPassword: (uid: string, new_password: string) => void | Promise<any>
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
@@ -25,6 +28,7 @@ const VERIFY_URL = '/user-verify/'
 
 
 export const AuthProvider = ({children}: AuthProps) => {
+    const navigate = useNavigate()
     const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')!) : null)
     const [user, setUser] = useState<any>(() => localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')!) : null)
 
@@ -106,6 +110,21 @@ export const AuthProvider = ({children}: AuthProps) => {
             })
     }
 
+    const recoverPassword = (uid: string, new_password: string):any => {
+        return axios.post('/password-recovery/', {
+            uid: uid,
+            password: new_password
+        }, {
+            headers: {'Content-Type': 'Application/json'},
+        })
+            .then(response => response.data)
+            .then(data => {
+                navigate('/?password_reset=True')
+            })
+            .catch(error => {
+                return error
+            })
+    }
     useEffect(() => {
         updateUserInfo()
     }, [authTokens])
@@ -117,6 +136,7 @@ export const AuthProvider = ({children}: AuthProps) => {
         logoutUser: logoutUser,
         updateAccessToken: updateAccessToken,
         verifyUser: verifyUser,
+        recoverPassword: recoverPassword
     }
     return (
         <AuthContext.Provider value={ContextData}>
