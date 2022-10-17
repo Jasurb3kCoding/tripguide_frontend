@@ -25,6 +25,9 @@ module.exports = {
                 'input-gray': '#E7ECF2',
                 product: {
                     'red': '#FF4332',
+                },
+                hero: {
+                    input: '#F6F7F9'
                 }
             },
             boxShadow: {

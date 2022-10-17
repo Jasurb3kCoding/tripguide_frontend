@@ -41,7 +41,7 @@ export const MyProfileInfo = () => {
                         <div className="main-info flex justify-between items-center">
                             <div className="-ml-32 photo-name flex space-x-8 justify-center items-center">
                                 <div
-                                    className="relative photo-wrapper w-24 h-24 shadow-2xl rounded-full z-10 ">
+                                    className="relative photo-wrapper w-24 h-24 shadow-2xl rounded-full z-10 ring-4 ring-white">
                                     {user.profile_photo
                                         //If user has pic
                                         ?
