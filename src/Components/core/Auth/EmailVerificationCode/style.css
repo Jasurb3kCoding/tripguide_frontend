@@ -1,0 +1,32 @@
+.digitInput {
+    @apply w-12 h-16 bg-gray-300 rounded-lg text-3xl  flex items-center justify-center
+}
+
+.digitInput.filled {
+    @apply bg-white border-2 border-gray-300
+}
+
+.digitInput.active {
+    @apply bg-white border-2 border-primary
+}
+
+.digitInput.active:before {
+    content: '';
+    animation: toggleText 600ms infinite alternate;
+    @apply w-0.5 h-6 bg-primary
+}
+
+@keyframes toggleText {
+    0% {
+        opacity: 100%;
+    }
+    49%{
+        opacity: 100%;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+    }
+}

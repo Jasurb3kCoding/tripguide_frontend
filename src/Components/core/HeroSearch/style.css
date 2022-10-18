@@ -1,0 +1,26 @@
+.hero-search-tab.active{
+    @apply border-b-primary border-b-2 -mb-0.5 text-black
+}
+
+.hero-search-tab{
+    @apply px-2 py-2 lg:px-3 lg:py-3 cursor-pointer text-gray-400 font-semibold flex items-center
+    hover:text-black
+}
+.hero-search-tab{
+    transition-duration: 0ms!important;
+}
+.hero-search-tab>p{
+    @apply ml-2
+}
+
+.hero-input{
+    @apply px-5 pb-2 pt-7 border rounded-md bg-hero-input border-gray-300 outline-0 w-full text-gray-500
+}
+
+.inner-text{
+    @apply absolute top-1.5 left-5 font-semibold text-black
+}
+
+.hero-date-input{
+    @apply px-5 pb-2 pt-7 border rounded-md bg-hero-input border-gray-300 outline-0 w-full text-gray-500
+}
