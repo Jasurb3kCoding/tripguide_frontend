@@ -7,6 +7,7 @@ import {Forget} from "./Forget/Forget";
 import {EmailVerificationCode} from "./EmailVerificationCode/EmailVerificationCode";
 import {AiOutlinePlus} from "react-icons/ai";
 import {PasswordResetLinkSent} from "./PasswordResetLinkSent/PasswordResetLinkSent";
+import './style.css'
 
 interface Modal {
     name: string,
@@ -52,13 +53,14 @@ export const Auth = ({hideAuthComponent}: Props) => {
     const activePageElement = modals.find(modal => modal.name === activePage)
 
     return (
-        <div onClick={hideAuthComponent} className='w-full h-screen fixed top-0 left-0 z-10 text-sm'>
-            {/*Black Screen behind the Modal*/}
+        <div onClick={hideAuthComponent} className='w-full h-screen fixed top-0 left-0 z-10 text-sm '>
             <div className="relative w-full h-full flex items-center justify-center">
+                {/*Black Screen behind the Modal*/}
                 <div
-                    className="bg-black opacity-10 w-full h-full absolute top-0 left-0 -z-10"></div>
-                <div className="modal bg-white px-14 pt-14 pb-10 w-112 rounded-2xl relative"
-                     onClick={event => event.stopPropagation()}>
+                    className="bg-black opacity-20 w-full h-full absolute top-0 left-0 -z-10"></div>
+                <div
+                    className="modal bg-white px-9 lg:px-14 pt-10 lg:pt-14 pb-5 lg:pb-10 w-96 lg:w-112 rounded-2xl relative"
+                    onClick={event => event.stopPropagation()}>
                     <div onClick={hideAuthComponent}
                          className="w-10 h-10 absolute -right-3 -top-3 bg-gray-200 flex items-center justify-center rotate-45 rounded-full border border-gray-300 cursor-pointer">
                         <AiOutlinePlus size={25}/>

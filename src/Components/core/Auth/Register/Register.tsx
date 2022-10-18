@@ -151,7 +151,7 @@ export const Register = ({changeModal, context, setContext}: Props) => {
 
     return (
         <>
-            <h1 className='text-4xl font-bold text-center'>Let's go</h1>
+            <h1 className='Auth-title'>Let's go</h1>
 
             <div className="socials flex mt-4 space-x-2">
                 <div onClick={() => toast('Coming soon')}

@@ -11,12 +11,6 @@ type Props = {};
 const PROFILE_URL = '/users/'
 
 export const Profile = (props: Props) => {
-    const [userInfo, setUserInfo] = useState<ProfileInfo>({});
-    const axiosPrivate = useAxiosPrivate()
-    const getUserInfo = async (id: number) => {
-        const response = await axiosPrivate.get(PROFILE_URL + id)
-        setUserInfo(response?.data)
-    }
     return (
         <div>
             <MyProfileInfo/>

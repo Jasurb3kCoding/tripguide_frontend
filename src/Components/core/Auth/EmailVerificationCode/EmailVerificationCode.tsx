@@ -60,7 +60,7 @@ export const EmailVerificationCode = ({changeModal, context, setContext}: Props)
 
     return (
         <div onClick={FocusInput} aria-disabled={!isElementActive}>
-            <h1 className='text-4xl font-bold text-center'>Email Verification</h1>
+            <h1 className='Auth-title'>Email Verification</h1>
             <h6 className='text-regular text-gray-400 mt-2'>We have sent the verification code to your
                 email {context?.email}</h6>
             <form className='mt-8 space-y-4'>

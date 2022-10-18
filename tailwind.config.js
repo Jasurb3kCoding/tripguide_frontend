@@ -9,6 +9,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 'sans': ['DM Sans', ...defaultTheme.fontFamily.sans],
+                'poppins': ['Poppins', ...defaultTheme.fontFamily.sans]
             },
             colors: {
                 'black': '#3B3E44',

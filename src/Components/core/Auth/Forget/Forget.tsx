@@ -60,7 +60,7 @@ export const Forget = ({changeModal, context, setContext}: Props) => {
     }
     return (
         <>
-            <h1 className='text-4xl font-bold text-center'>Password recovery</h1>
+            <h1 className='Auth-title'>Password recovery</h1>
             <h6 className='text-regular text-center text-gray-400 mt-2'>Enter your email to recover your password</h6>
             <form className='mt-8 space-y-4' onSubmit={submitForgetEmail}>
                 <Input title='Email'

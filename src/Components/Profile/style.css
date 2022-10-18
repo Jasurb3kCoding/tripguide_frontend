@@ -1,7 +1,7 @@
 .change-photo-btn {
     backdrop-filter: blur(5px);
     background-color: rgba(255, 255, 255, .4);
-    @apply absolute bottom-5 left-5 py-2 px-4 rounded-lg text-white flex items-center cursor-pointer
+    @apply absolute top-5 lg:top-auto lg:bottom-5 left-5 py-2 px-4 rounded-lg text-white flex items-center cursor-pointer
     border-2 border-transparent
     hover:border-white
 }

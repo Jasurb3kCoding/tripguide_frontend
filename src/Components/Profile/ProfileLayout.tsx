@@ -7,7 +7,7 @@ type Props = {
 };
 export const ProfileLayout = (props: Props) => {
     return (
-        <div className='px-28 py-12'>
+        <div className='layout mt-12'>
             <Outlet/>
         </div>
     );

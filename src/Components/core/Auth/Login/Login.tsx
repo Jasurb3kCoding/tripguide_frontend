@@ -72,14 +72,15 @@ export const Login = ({changeModal, context, setContext}: Props) => {
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized')
             } else {
-                setErrMsg('Login Failed. Please try again later.')
+                setErrMsg(err.message)
+                // setErrMsg('Login Failed. Please try again later.')
             }
         }
     }
 
     return (
         <>
-            <h1 className='text-4xl font-bold text-center'>Welcome Back!</h1>
+            <h1 className='Auth-title'>Welcome Back!</h1>
 
             <div className="socials flex mt-4 space-x-2">
                 <div onClick={() => toast('Coming soon')}
@@ -108,7 +109,7 @@ export const Login = ({changeModal, context, setContext}: Props) => {
                        errorMessage={errorMessageEmail}
                        value={email}
                        autoComplete='false'
-                       type='text'
+                       type='email'
                        placeholder='Email'
                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                        required

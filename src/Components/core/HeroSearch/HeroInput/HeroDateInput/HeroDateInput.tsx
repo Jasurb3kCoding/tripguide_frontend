@@ -10,6 +10,7 @@ type Props = {};
 export const HeroDateInput = (props: Props) => {
     const [selectedDate, setSelectedDate] = useState<RangeType>();
     const [isCalendarVisible, setIsCalendarVisible] = useState(false)
+    const [showDoubleCalendar, setShowDoubleCalendar] = useState(window.innerWidth > 1024)
 
     const [fromDate, setFromDate] = useState<Date>()
     const [fromDateReadable, setFromDateReadable] = useState<String>()
@@ -34,6 +35,12 @@ export const HeroDateInput = (props: Props) => {
         setToDateReadable(toDate.toLocaleDateString("en-US", {day: 'numeric', month: 'short', year: 'numeric'}))
     }, [selectedDate])
 
+    const handleResizeWindow = () =>{
+        setShowDoubleCalendar(window.innerWidth > 1024)
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleResizeWindow, false)
+    }, [])
     return (
         <div className='relative w-full cursor-pointer flex justify-between col-span-1 gap-4'>
             <div onClick={toggleCalendar} className="flex-1 relative hero-date-input">
@@ -45,7 +52,7 @@ export const HeroDateInput = (props: Props) => {
                 <h6 className='col-span-1'>{toDateReadable || 'Add Date'}</h6>
             </div>
             <Calendar className={`${isCalendarVisible || 'hidden'}`} onChange={onChange} value={selectedDate}
-                      showDoubleView={true} selectRange={true}/>
+                      showDoubleView={showDoubleCalendar} selectRange={true}/>
         </div>
     );
 };

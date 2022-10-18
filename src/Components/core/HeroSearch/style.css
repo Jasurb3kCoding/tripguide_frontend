@@ -3,7 +3,7 @@
 }
 
 .hero-search-tab{
-    @apply px-3 py-3 cursor-pointer text-gray-400 font-semibold flex items-center
+    @apply px-2 py-2 lg:px-3 lg:py-3 cursor-pointer text-gray-400 font-semibold flex items-center
     hover:text-black
 }
 .hero-search-tab{
