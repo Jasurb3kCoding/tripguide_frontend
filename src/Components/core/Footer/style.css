@@ -1,0 +1,13 @@
+.footer--section{
+
+}
+.footer--section > h2{
+    @apply font-semibold text-xl
+}
+
+.footer--section > ul{
+    @apply flex flex-col mt-4 gap-4
+}
+.footer--section > ul > li {
+    @apply text-gray-400 hover:text-gray-700
+}

@@ -7,6 +7,7 @@ import {Auth} from "./Components/core/Auth/Auth";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from "./Hooks/useAuth";
+import {Footer} from "./Components/core/Footer/Footer";
 
 type Props = {};
 export const App = (props: Props) => {
@@ -17,7 +18,7 @@ export const App = (props: Props) => {
     const hideAuthComponent = () => setIsAuthComponentActive(false)
 
     return (
-        <div className='relative h-[2000px]'>
+        <div className='relative'>
 
             {/*Alert Manager*/}
             <ToastContainer
@@ -34,6 +35,7 @@ export const App = (props: Props) => {
             {isAuthComponentActive && !user && <Auth hideAuthComponent={hideAuthComponent}/>}
             <Header showAuthComponent={showAuthComponent}/>
             <Outlet/>
+            <Footer/>
         </div>
     );
 };
