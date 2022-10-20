@@ -20,7 +20,7 @@ export const DestinationsCard = ({location: {image, location, number_of_destinat
             <div className="img w-16 h-16 mx-auto md:ml-0">
                 <img className='w-full h-full object-cover rounded-lg' src={image} alt={location}/>
             </div>
-            <h3  className='font-semibold text-xl mt-4  h-24 inline-block break-words '>{location}</h3>
+            <h3  className='font-semibold text-xl mt-4 inline-block break-words '>{location}</h3>
             <p className='text-gray-500 mt-3'>{number_of_destinations} destinations</p>
         </Link>
     );
