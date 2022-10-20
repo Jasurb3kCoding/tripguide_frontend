@@ -17,7 +17,7 @@ export const App = (props: Props) => {
     const hideAuthComponent = () => setIsAuthComponentActive(false)
 
     return (
-        <div className='relative'>
+        <div className='relative h-[2000px]'>
 
             {/*Alert Manager*/}
             <ToastContainer

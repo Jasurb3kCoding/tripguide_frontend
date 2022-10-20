@@ -15,7 +15,7 @@
     @apply transition-all duration-200
 }
 
-a, .link{
+.link{
     @apply text-primary cursor-pointer hover:text-primary--140 font-semibold
 }
 
@@ -34,4 +34,15 @@ a, .link{
 
 .layout{
     @apply w-10/12 mx-auto
+}
+
+.section-title{
+    @apply text-3xl font-semibold
+}
+.section-description{
+    @apply text-gray-500 mt-4
+}
+.br-until-md{
+    display: initial;
+    @apply md:hidden
 }
