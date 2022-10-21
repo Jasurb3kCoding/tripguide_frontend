@@ -54,7 +54,7 @@ export const Featured = (props: Props) => {
             <h1 className='section-title'>Featured<br className='br-until-md'/> Destnations</h1>
             {/*TODO: Your country instead of Indonesia*/}
             <p className='section-description'>Popular destinations open to visit to visitors from Indonesia</p>
-            <div className="grid grid-cols-3 grid-rows-3 gap-4 mt-5">
+            <div className="grid grid-cols-1 grid-rows-6 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-3 gap-4 mt-5">
                 {featured_cities.map((featured)=>
                     <FeaturedCard data={featured}/>
                 )}

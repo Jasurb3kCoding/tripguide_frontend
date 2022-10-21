@@ -7,7 +7,7 @@ export const SubscribeBanner = (props: Props) => {
         <div className='absolute text-white inset-x-0 rounded-xl bg-primary px-10 lg:px-24 py-10 md:py-20 top-0 -translate-y-1/2'>
             <div className="flex flex-col lg:flex-row">
                 <div className="text flex-1">
-                    <h1 className='text-2xl lg:text-4xl font-bold'>Save time, save money!</h1>
+                    <h1 className='text-xl md:text-2xl lg:text-4xl font-bold'>Save time, save money!</h1>
                     <p className='opacity-75 mt-2 lg:mt-4'>Sign up and we'll send the best deals to you.</p>
                 </div>
                 <div className="email flex-1 flex items-end lg:pl-20 mt-4">

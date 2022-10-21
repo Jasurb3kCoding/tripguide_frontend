@@ -40,7 +40,7 @@
     @apply text-3xl font-semibold
 }
 .section-description{
-    @apply text-gray-500 mt-4
+    @apply text-gray-500 mt-2
 }
 .br-until-md{
     display: initial;
