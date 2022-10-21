@@ -7,8 +7,8 @@ import {Link} from "react-router-dom";
 type Props = {};
 export const Footer = (props: Props) => {
     return (
-        <div className='pt-44 bg-white'>
-            <div className="bg-background">
+        <div className='pt-44 bg-background'>
+            <div className="bg-bg-400">
                 <div className="layout relative pt-44 pb-14">
                     <SubscribeBanner/>
                     <div className="grid grid-cols-5">
