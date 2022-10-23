@@ -11,11 +11,11 @@ export const Footer = (props: Props) => {
             <div className="bg-bg-400">
                 <div className="layout relative pt-44 pb-14">
                     <SubscribeBanner/>
-                    <div className="grid grid-cols-5">
-                        <div className="col-span-2">
+                    <div className="grid grid-rows-1 gap-5 lg:grid-cols-5">
+                        <div className="col-span-1 row-end-5 lg:row-end-auto lg:col-span-2">
                             <div className="img-wrapper">
                                 <img className='w-40' src="/media/core/logo-transparent.png" alt="logo"/>
-                                <p className='w-1/2 text-gray-400 mt-5'>TripGuide is a learning project that is made to
+                                <p className='w-full md:w-1/2 text-gray-400 mt-5'>TripGuide is a learning project that is made to
                                     improve
                                     and show the abilities of a young group of programmers</p>
 

@@ -1,4 +1,5 @@
 .footer--section{
+    @apply border-b pb-7 lg:border-b-0 lg:pb-0
 
 }
 .footer--section > h2{

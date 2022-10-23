@@ -51,7 +51,7 @@ export const ExploreTheWorld = (props: Props) => {
         <div className='layout mt-12'>
             <h1 className='section-title'>Explore The World</h1>
             <p className='section-description'>10,788 beautiful places</p>
-            <div className="hotels grid grid-cols-1  lg:grid-cols-4 gap-5 mt-4">
+            <div className="hotels grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mt-4">
                 {hotels.map(hotel =>
                     <HotelMdCard data={hotel}/>
                 )}
