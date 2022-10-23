@@ -10,6 +10,7 @@ import {Profile} from "./Pages/Profile/Profile";
 import {ProfileLayout} from "./Components/Profile/ProfileLayout";
 import RequireAuth from "./Components/core/Auth/RequireAuth";
 import {ResetPassword} from "./Pages/Profile/ResetPassword";
+import {SearchResults} from "./Pages/Hotels/SearchResults";
 
 render(
     <BrowserRouter>
@@ -18,7 +19,9 @@ render(
                 <Route path='/' element={<App/>}>
                     <Route index element={<Home/>}/>
                     <Route path='/reset-password/:uid' element={<ResetPassword/>}>
-
+                    </Route>
+                    <Route path='hotels'>
+                        <Route path='search' element={<SearchResults/>}></Route>
                     </Route>
                     <Route element={<RequireAuth/>}>
                         <Route path='/profile' element={<ProfileLayout/>}>
