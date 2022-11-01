@@ -1,14 +1,12 @@
 // @flow 
 import * as React from 'react';
 import './style.css'
-import {RiFlightTakeoffFill, RiHotelBedFill, RiTaxiFill} from "react-icons/ri";
-import {Hero} from "../../Hotels/Home/Hero/Hero";
+import {RiFlightTakeoffFill, RiHotelBedFill} from "react-icons/ri";
 import {HeroLocationInput} from "./HeroInput/HeroLocationInput/HeroLocationInput";
 import {HeroDateInput} from "./HeroInput/HeroDateInput/HeroDateInput";
-import {HeroGuestsInput} from "./HeroInput/HeroGuestsInput/HeroGuestsInput";
 
 type Props = {};
-export const HeroSearch = (props: Props) => {
+export const HeroSearch = () => {
     return (
         <div className='layout absolute inset-x-0 -bottom-16 lg:bottom-0 lg:translate-y-1/2'>
             <div className="w-full px-7 lg:px-10 py-5 flex flex-col lg:flex-row bg-white rounded-lg drop-shadow-xl">
@@ -42,7 +40,9 @@ export const HeroSearch = (props: Props) => {
                     </div>
                 </div>
                 <div className="right p-0 lg:pl-8 mt-4 lg:mt-0 flex items-end cursor-pointer">
-                    <div className="btn bg-primary py-4 px-6 text-center rounded-lg font-semibold text-white w-full">Search</div>
+                    <div
+                        className="btn bg-primary py-4 px-6 text-center rounded-lg font-semibold text-white w-full">Search
+                    </div>
                 </div>
             </div>
         </div>
